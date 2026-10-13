@@ -1,0 +1,8 @@
+
+Flask
+requests
+Pillow
+transformers
+torch
+python-dotenv
+huggingface_hub

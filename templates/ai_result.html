@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Result 🎀</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>🤖 StyleMe AI</h1>
+
+    <div class="outfit-card">
+
+        {% if photo %}
+            <img
+                src="/uploads/{{ photo }}"
+                alt="{{ name }}"
+                class="clothing-photo"
+            >
+        {% endif %}
+
+        <h2>I think this is...</h2>
+
+        <h1 id="prediction">
+            {{ prediction }}
+        </h1>
+
+        <p id="confidence">
+            🤖 AI confidence: {{ confidence }}%
+        </p>
+
+        <hr>
+
+        <p>
+            ✨ I've filled these in for you.
+            Change anything that looks wrong!
+        </p>
+
+        <form action="/confirm-clothing" method="POST">
+
+            <label for="name">👗 Item name</label>
+            <br>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value="{{ name }}"
+                required
+            >
+
+            <br><br>
+
+
+            <label for="category">📂 Category</label>
+            <br>
+
+            <select id="category" name="category" required>
+
+                <option value="Top"
+                    {% if category == "Top" %}selected{% endif %}>
+                    Top
+                </option>
+
+                <option value="Bottom"
+                    {% if category == "Bottom" %}selected{% endif %}>
+                    Bottom
+                </option>
+
+                <option value="Shoes"
+                    {% if category == "Shoes" %}selected{% endif %}>
+                    Shoes
+                </option>
+
+            </select>
+
+            <br><br>
+
+
+            <label for="colour">🎨 Colour</label>
+            <br>
+
+            <input
+                type="text"
+                id="colour"
+                name="colour"
+                value="{{ colour }}"
+                required
+            >
+
+            <br><br>
+
+
+            <label for="style">✨ Style</label>
+            <br>
+
+            <select id="style" name="style" required>
+
+                <option value="Feminine"
+                    {% if style == "Feminine" %}selected{% endif %}>
+                    Feminine
+                </option>
+
+                <option value="Casual"
+                    {% if style == "Casual" %}selected{% endif %}>
+                    Casual
+                </option>
+
+                <option value="Preppy"
+                    {% if style == "Preppy" %}selected{% endif %}>
+                    Preppy
+                </option>
+
+                <option value="Y2K"
+                    {% if style == "Y2K" %}selected{% endif %}>
+                    Y2K
+                </option>
+
+                <option value="Minimalist"
+                    {% if style == "Minimalist" %}selected{% endif %}>
+                    Minimalist
+                </option>
+
+            </select>
+
+
+            <input
+                type="hidden"
+                name="photo"
+                value="{{ photo }}"
+            >
+
+            <br><br>
+
+            <button type="submit">
+                💗 Add to My Wardrobe
+            </button>
+
+        </form>
+
+
+        <br>
+
+        <button
+            type="button"
+            onclick="tryAnotherPrediction()">
+            🔄 Think Again
+        </button>
+
+        <br><br>
+
+        <a href="/" class="back-button">
+            📸 Upload Another Item
+        </a>
+
+    </div>
+
+
+    <script>
+
+        const predictions = {{ predictions | tojson }};
+
+        let currentPrediction = 0;
+
+
+        function tryAnotherPrediction() {
+
+            currentPrediction++;
+
+            if (currentPrediction >= predictions.length) {
+                currentPrediction = 0;
+            }
+
+            const prediction = predictions[currentPrediction];
+
+            document.getElementById("prediction").textContent =
+                prediction.label;
+
+            document.getElementById("confidence").textContent =
+                "🤖 AI confidence: " +
+                prediction.confidence +
+                "%";
+
+            document.getElementById("name").value =
+                prediction.label;
+
+        }
+
+    </script>
+
+</body>
+</html>

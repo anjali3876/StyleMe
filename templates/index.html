@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>StyleMe 🎀</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+        <div class="hero-badge">
+            ✨ Your AI Style Assistant
+        </div>
+
+        <h1>StyleMe 🎀</h1>
+
+        <p class="hero-subtitle">
+            Your wardrobe. Your style. Your perfect outfit.
+        </p>
+
+        <p class="hero-description">
+            Let StyleMe create outfits from your own wardrobe,
+            based on your style, occasion and today's weather.
+        </p>
+
+    </div>
+
+
+    <!-- WARDROBE BUTTON -->
+
+    <a href="/wardrobe" class="wardrobe-button">
+        👗 My Wardrobe
+    </a>
+
+
+    <!-- OUTFIT GENERATOR -->
+
+    <div class="main-card">
+
+        <h2>✨ Create Your Outfit</h2>
+
+        <p class="section-description">
+            Tell me what you're feeling today 💗
+        </p>
+
+
+        <!-- CITY -->
+
+        <div class="form-section">
+
+            <label for="city">
+                🌍 Where are you today?
+            </label>
+
+            <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="e.g. London"
+                form="outfit-form"
+                required
+            >
+
+        </div>
+
+
+        <!-- STYLE -->
+
+        <div class="form-section">
+
+            <h3>🎀 What's your style?</h3>
+
+            <div class="choice-grid">
+
+                <button
+                    type="button"
+                    class="choice-button"
+                    onclick="selectStyle('Feminine', this)"
+                >
+                    🎀 Feminine
+                </button>
+
+                <button
+                    type="button"
+                    class="choice-button"
+                    onclick="selectStyle('Casual', this)"
+                >
+                    👟 Casual
+                </button>
+
+                <button
+                    type="button"
+                    class="choice-button"
+                    onclick="selectStyle('Preppy', this)"
+                >
+                    🎓 Preppy
+                </button>
+
+                <button
+                    type="button"
+                    class="choice-button"
+                    onclick="selectStyle('Y2K', this)"
+                >
+                    💿 Y2K
+                </button>
+
+                <button
+                    type="button"
+                    class="choice-button"
+                    onclick="selectStyle('Minimalist', this)"
+                >
+                    🤍 Minimalist
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- OCCASION -->
+
+        <div class="form-section">
+
+            <h3>✨ What's the occasion?</h3>
+
+            <div class="choice-grid">
+
+                <button
+                    type="button"
+                    class="choice-button"
+                    onclick="selectOccasion('Uni', this)"
+                >
+                    📚 Uni
+                </button>
+
+                <button
+                    type="button"
+                    class="choice-button"
+                    onclick="selectOccasion('Date', this)"
+                >
+                    💗 Date
+                </button>
+
+                <button
+                    type="button"
+                    class="choice-button"
+                    onclick="selectOccasion('Party', this)"
+                >
+                    🪩 Party
+                </button>
+
+                <button
+                    type="button"
+                    class="choice-button"
+                    onclick="selectOccasion('Casual', this)"
+                >
+                    ☕ Casual
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- GENERATE FORM -->
+
+        <form
+            action="/generate"
+            method="POST"
+            id="outfit-form"
+        >
+
+            <input
+                type="hidden"
+                name="city"
+                id="city-hidden"
+            >
+
+            <input
+                type="hidden"
+                name="style"
+                id="style"
+                required
+            >
+
+            <input
+                type="hidden"
+                name="occasion"
+                id="occasion"
+                required
+            >
+
+            <button
+                type="submit"
+                class="generate-button"
+                onclick="prepareForm()"
+            >
+                ✨ Generate My Outfit ✨
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- AI WARDROBE SECTION -->
+
+    <div class="main-card ai-card">
+
+        <div class="ai-icon">
+            🤖
+        </div>
+
+        <h2>Add Clothes With AI</h2>
+
+        <p class="section-description">
+            Upload a photo and let StyleMe recognise your clothing.
+        </p>
+
+        <form
+            action="/add-clothing"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <label
+                for="photo"
+                class="upload-label"
+            >
+                📸 Choose a clothing photo
+            </label>
+
+            <br><br>
+
+            <input
+                type="file"
+                id="photo"
+                name="photo"
+                accept="image/*"
+                required
+            >
+
+            <br><br>
+
+            <button
+                type="submit"
+                class="ai-button"
+            >
+                🤖 Analyse My Clothing
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <p class="footer-text">
+        Made with 💗 and a little AI magic
+    </p>
+
+
+    <script>
+
+        function selectStyle(style, button) {
+
+            document.getElementById("style").value = style;
+
+            const buttons =
+                document.querySelectorAll(".choice-button");
+
+            buttons.forEach(function(btn) {
+
+                if (
+                    btn.parentElement ===
+                    button.parentElement
+                ) {
+                    btn.classList.remove("selected");
+                }
+
+            });
+
+            button.classList.add("selected");
+        }
+
+
+        function selectOccasion(occasion, button) {
+
+            document.getElementById("occasion").value = occasion;
+
+            const buttons =
+                document.querySelectorAll(".choice-button");
+
+            buttons.forEach(function(btn) {
+
+                if (
+                    btn.parentElement ===
+                    button.parentElement
+                ) {
+                    btn.classList.remove("selected");
+                }
+
+            });
+
+            button.classList.add("selected");
+        }
+
+
+        function prepareForm() {
+
+            document.getElementById("city-hidden").value =
+                document.getElementById("city").value;
+
+        }
+
+    </script>
+
+</body>
+</html>

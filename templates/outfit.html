@@ -1,0 +1,282 @@
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Your StyleMe Outfit 🎀</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <div class="hero">
+
+        <div class="hero-badge">
+            ✨ AI Outfit Recommendation
+        </div>
+
+        <h1>Your Outfit 🎀</h1>
+
+        <p class="hero-subtitle">
+            StyleMe picked this look for you 💗
+        </p>
+
+        <p class="hero-description">
+            A {{ style }} look for your {{ occasion.lower() }} plans,
+            taking today's weather into account.
+        </p>
+
+    </div>
+
+
+    <!-- WEATHER -->
+
+    <div class="main-card">
+
+        <h2>🌦️ Today's Style Forecast</h2>
+
+        <p>
+            <strong>{{ city }}</strong>
+        </p>
+
+        <p>
+            🌡️ {{ temperature }}°C
+            &nbsp; • &nbsp;
+            {{ weather_type }}
+        </p>
+
+        <span class="style-tag">
+            ✨ {{ style }}
+        </span>
+
+        <span class="style-tag">
+            💗 {{ occasion }}
+        </span>
+
+    </div>
+
+    <div class="main-card explanation-card">
+
+    <h2>💗 Why This Outfit Works</h2>
+
+    <p class="section-description">
+        {{ explanation }}
+    </p>
+
+</div>
+    <!-- OUTFIT -->
+
+    <div class="outfit-card">
+
+        <h2>👗 Your Complete Look</h2>
+
+        <p class="section-description">
+            Three pieces from your wardrobe, styled together.
+        </p>
+
+
+        <!-- TOP -->
+
+        <div class="outfit-item">
+
+            <div class="outfit-number">
+                01
+            </div>
+
+            {% if outfit[0].photo %}
+
+                <img
+                    src="/uploads/{{ outfit[0].photo }}"
+                    alt="{{ outfit[0].name }}"
+                    class="outfit-photo"
+                >
+
+            {% else %}
+
+                <div class="clothing-icon">
+                    👚
+                </div>
+
+            {% endif %}
+
+            <h3>👚 Top</h3>
+
+            <p>
+                <strong>{{ outfit[0].name }}</strong>
+            </p>
+
+            <span class="style-tag">
+                🎨 {{ outfit[0].colour }}
+            </span>
+
+        </div>
+
+
+        <!-- BOTTOM -->
+
+        <div class="outfit-item">
+
+            <div class="outfit-number">
+                02
+            </div>
+
+            {% if outfit[1].photo %}
+
+                <img
+                    src="/uploads/{{ outfit[1].photo }}"
+                    alt="{{ outfit[1].name }}"
+                    class="outfit-photo"
+                >
+
+            {% else %}
+
+                <div class="clothing-icon">
+                    👗
+                </div>
+
+            {% endif %}
+
+            <h3>👗 Bottom</h3>
+
+            <p>
+                <strong>{{ outfit[1].name }}</strong>
+            </p>
+
+            <span class="style-tag">
+                🎨 {{ outfit[1].colour }}
+            </span>
+
+        </div>
+
+
+        <!-- SHOES -->
+
+        <div class="outfit-item">
+
+            <div class="outfit-number">
+                03
+            </div>
+
+            {% if outfit[2].photo %}
+
+                <img
+                    src="/uploads/{{ outfit[2].photo }}"
+                    alt="{{ outfit[2].name }}"
+                    class="outfit-photo"
+                >
+
+            {% else %}
+
+                <div class="clothing-icon">
+                    👠
+                </div>
+
+            {% endif %}
+
+            <h3>👠 Shoes</h3>
+
+            <p>
+                <strong>{{ outfit[2].name }}</strong>
+            </p>
+
+            <span class="style-tag">
+                🎨 {{ outfit[2].colour }}
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACTIONS -->
+
+    <div class="main-card">
+
+        <h2>💗 Not feeling this look?</h2>
+
+        <p class="section-description">
+            Let StyleMe create another combination from your wardrobe.
+        </p>
+
+
+        <form
+            action="/generate-another"
+            method="POST"
+        >
+
+            <input
+                type="hidden"
+                name="style"
+                value="{{ style }}"
+            >
+
+            <input
+                type="hidden"
+                name="occasion"
+                value="{{ occasion }}"
+            >
+
+            <input
+                type="hidden"
+                name="city"
+                value="{{ city }}"
+            >
+
+            <input
+                type="hidden"
+                name="current_top"
+                value="{{ outfit[0].name }}"
+            >
+
+            <input
+                type="hidden"
+                name="current_bottom"
+                value="{{ outfit[1].name }}"
+            >
+
+            <input
+                type="hidden"
+                name="current_shoes"
+                value="{{ outfit[2].name }}"
+            >
+
+            <button
+                type="submit"
+                class="generate-button"
+            >
+                🔄 Generate Another Outfit
+            </button>
+
+        </form>
+
+
+        <br>
+
+
+        <a
+            href="/"
+            class="back-button"
+        >
+            ← Create Another Outfit
+        </a>
+
+    </div>
+
+
+    <p class="footer-text">
+        Styled by StyleMe AI 🎀
+    </p>
+
+
+</body>
+
+</html>
+

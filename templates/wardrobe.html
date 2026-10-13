@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Wardrobe 🎀</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>👗 My Wardrobe 🎀</h1>
+
+    <p>Everything you've added to StyleMe.</p>
+
+    <div class="wardrobe-grid">
+
+        {% for item in clothing %}
+
+        <div class="wardrobe-item">
+
+            {% if item[5] %}
+
+                <img
+                    src="/uploads/{{ item[5] }}"
+                    alt="{{ item[1] }}"
+                    class="clothing-photo"
+                >
+
+            {% else %}
+
+                <div class="clothing-icon">
+
+                    {% if item[2] == "Top" %}
+                        👚
+
+                    {% elif item[2] == "Bottom" %}
+                        👗
+
+                    {% elif item[2] == "Shoes" %}
+                        👠
+
+                    {% else %}
+                        👗
+
+                    {% endif %}
+
+                </div>
+
+            {% endif %}
+
+
+            <h2>{{ item[1] }}</h2>
+
+            <p>Category: {{ item[2] }}</p>
+
+            <p>🎨 {{ item[3] }}</p>
+
+            <span class="style-tag">
+                ✨ {{ item[4] }}
+            </span>
+
+
+            <!-- DELETE BUTTON -->
+
+            <form
+                action="/delete-clothing/{{ item[0] }}"
+                method="POST"
+                onsubmit="return confirm('Remove this item from your wardrobe?');"
+            >
+
+                <button type="submit" class="delete-button">
+                    🗑️ Remove
+                </button>
+
+            </form>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <br>
+
+    <a href="/" class="back-button">
+        ← Back to StyleMe
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+.env
+styleme.db
+__pycache__/
+.venv/
+uploads/
+
+# Python cache files
+*.py[cod]
+
+# Other virtual environments
+venv/
+
+# Environment and secret files
+.env.*
+
+# Editor and operating system files
+.DS_Store
+.vscode/
+
+# Test artefacts
+.coverage
+htmlcov/
+.pytest_cache/
