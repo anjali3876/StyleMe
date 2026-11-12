@@ -35,7 +35,6 @@ git clone YOUR_GITHUB_REPOSITORY_URL
 cd StyleMe
 ```
 
-Replace `YOUR_GITHUB_REPOSITORY_URL` with your repository's clone URL.
 
 ### 2. Create a virtual environment
 
