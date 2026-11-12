@@ -78,6 +78,12 @@ The SQLite database is initialised automatically. The clothing-recognition model
 python -m unittest discover -s tests -v
 ```
 
+## StyleMe Demo
+
+Watch my application demonstration:
+
+(https://youtu.be/XkV_nqXXVE0)
+
 ##  Security and privacy
 
 Environment secrets, the local SQLite database, uploaded clothing photos, and virtual environments should remain outside version control.
