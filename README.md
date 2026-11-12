@@ -1,8 +1,8 @@
-# 🎀 StyleMe — AI-Powered Wardrobe Assistant
+#  StyleMe — AI-Powered Wardrobe Assistant
 
 StyleMe is a fashion recommendation web application that helps users organise their wardrobe and discover outfit combinations based on their personal style, occasion, and local weather.
 
-## ✨ Features
+##  Features
 
 * **AI clothing recognition:** Analyse uploaded clothing photos using a machine-learning model.
 * **Editable predictions:** Review and correct the predicted clothing details before saving.
@@ -13,7 +13,7 @@ StyleMe is a fashion recommendation web application that helps users organise th
 * **Outfit variety:** Generate alternative combinations.
 * **Wardrobe management:** View and remove saved clothing items.
 
-## 🛠️ Technologies
+##  Technologies
 
 * Python
 * Flask
@@ -26,7 +26,7 @@ StyleMe is a fashion recommendation web application that helps users organise th
 * Open-Meteo weather API
 * `unittest` for automated testing
 
-## 🚀 Getting Started
+
 
 ### 1. Clone the repository
 
@@ -72,17 +72,17 @@ Open http://127.0.0.1:5000 in your browser.
 
 The SQLite database is initialised automatically. The clothing-recognition model may need to download the first time it is used.
 
-## 🧪 Run the tests
+##  Run the tests
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-## 🔒 Security and privacy
+##  Security and privacy
 
 Environment secrets, the local SQLite database, uploaded clothing photos, and virtual environments should remain outside version control.
 
-## 👗 Project Goals
+## Project Goals
 
 StyleMe was developed as a computer science portfolio project to explore web development, object-oriented programming, database management, machine learning integration, and personalised recommendation systems.
 
