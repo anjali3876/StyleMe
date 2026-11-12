@@ -31,7 +31,7 @@ StyleMe is a fashion recommendation web application that helps users organise th
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/anjali3876/StyleMe.git
 cd StyleMe
 ```
 
