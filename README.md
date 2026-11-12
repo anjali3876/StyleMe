@@ -56,7 +56,7 @@ Create a `.env` file in the project root:
 ```text
 HF_TOKEN=your_hugging_face_token
 ```
-
+Replace 'your_hugging_face_token' with your own Hugging Face access token.
 ### 5. Run the application
 
 ```bash
