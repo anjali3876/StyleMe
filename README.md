@@ -1,4 +1,4 @@
-#  StyleMe — AI-Powered Wardrobe Assistant
+#  StyleMe: AI-Powered Wardrobe Assistant
 
 StyleMe is a fashion recommendation web application that helps users organise their wardrobe and discover outfit combinations based on their personal style, occasion, and local weather.
 
