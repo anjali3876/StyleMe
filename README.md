@@ -58,10 +58,6 @@ Create a `.env` file in the project root:
 HF_TOKEN=your_hugging_face_token
 ```
 
-Get a token from [Hugging Face](https://huggingface.co/settings/tokens) if you want to use the hosted AI outfit explanations.
-
-**Never commit your real `.env` file or API token.** The application includes a fallback explanation when a token isn't configured.
-
 ### 5. Run the application
 
 ```bash
