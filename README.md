@@ -88,4 +88,4 @@ StyleMe was developed as a computer science portfolio project to explore web dev
 
 ---
 
-*Built with Python and a love of fashion 💗*
+
